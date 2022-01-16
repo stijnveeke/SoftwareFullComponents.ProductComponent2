@@ -62,7 +62,7 @@ jobs:
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'softwarefullcomponents'
+        app-name: 'SoftwareFullProductComponent'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_03af28818a054f1390d8c4ed6da1e37f }}
         images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_ec9c3614d2074861bb9e9e05c5e4943a }}/3739323298328/product-component:${{ github.sha }}'
