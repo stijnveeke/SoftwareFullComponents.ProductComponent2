@@ -27,6 +27,44 @@ namespace SoftwareFullComponents.Product2Component.Controllers
             _logger = logger;
             _productRepository = productRepository;
         }
+        
+        [HttpGet("MultiProductCall")]
+        public async Task RequestedProducts()
+        {
+            if (HttpContext.WebSockets.IsWebSocketRequest)
+            {
+                using (var ws = await HttpContext.WebSockets.AcceptWebSocketAsync())
+                {
+                    var cts = new System.Threading.CancellationTokenSource();
+                    ArraySegment<byte> byteToSend = new ArraySegment<byte>(Encoding.UTF8.GetBytes("Shaking hands: Waiting for product slugs"));
+                    await ws.SendAsync(byteToSend, WebSocketMessageType.Text, false, cts.Token);
+                    
+                    var responseBuffer = new byte[1024];
+                    var offset = 0;
+                    var packet = 1024;
+
+                    while (true)
+                    {
+                        ArraySegment<byte> byteRecieved = new ArraySegment<byte>(responseBuffer, offset, packet);
+                        WebSocketReceiveResult response = await ws.ReceiveAsync(byteRecieved, cts.Token);
+                        var responseMessage = Encoding.UTF8.GetString(responseBuffer, offset, response.Count);
+
+                        if (response.EndOfMessage)
+                        {
+                            await ws.CloseAsync(WebSocketCloseStatus.NormalClosure, "Agreeing to end this",
+                                CancellationToken.None);
+                            break;
+                        }
+                        
+                        var productSlug = responseMessage;
+                        var product = await _productRepository.GetProductBySlug(productSlug);
+                        var productbytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(product));
+                        ArraySegment<byte> productToSendInBytes = new ArraySegment<byte>(productbytes);
+                        await ws.SendAsync(productToSendInBytes, WebSocketMessageType.Text, false, cts.Token);
+                    }
+                }
+            }
+        }
 
         [HttpGet("Product")]
         public async Task GetLicenses()
