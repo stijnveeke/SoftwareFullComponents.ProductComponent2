@@ -40,7 +40,7 @@ jobs:
       with:
         tags: v1, latest, ${{ github.sha }}
         # Name of the Docker image
-        image: 3739323298328/productcomponent
+        image: 3739323298328/product-component
         # Target Docker registry
         registry: docker.io
         # Location of Dockerfile, if not Dockerfile in root directory
