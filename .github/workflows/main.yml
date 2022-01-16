@@ -62,10 +62,10 @@ jobs:
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'softwarefullgateway'
+        app-name: 'softwarefullcomponents'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_6e1eb8e7f17f41a5939439ddf415b36e }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_dd7952fa6fe9464fb7ea3fc35d178767 }}/web-gateway:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_03af28818a054f1390d8c4ed6da1e37f }}
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_ec9c3614d2074861bb9e9e05c5e4943a }}/3739323298328/product-component:${{ github.sha }}'
   upload-to-sonarcloud:
     name: Upload to sonarcloud
     needs: build
