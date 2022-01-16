@@ -90,7 +90,6 @@ namespace ProductComponent.Controllers
         // POST: api/Products
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        [Authorize("create:product")]
         public async Task<ActionResult<Product>> PostProduct([FromBody] ProductCreate productCreate)
         {
             var product = await _productRepository.CreateProduct(_mapper.Map<Product>(productCreate));
