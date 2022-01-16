@@ -115,7 +115,7 @@ namespace SoftwareFullComponents.Product2Component
                 {
                     context.Database.Migrate();
                 }
-                else
+                else if(context != null)
                 {
                     context.Database.EnsureCreated();
                     context.Database.Migrate();
