@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - master
-      - stijnveeke-action-test
   workflow_dispatch:
 
 jobs:
