@@ -65,7 +65,7 @@ jobs:
         app-name: 'SoftwareFullProductComponent'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_03af28818a054f1390d8c4ed6da1e37f }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_ec9c3614d2074861bb9e9e05c5e4943a }}/3739323298328/product-component:${{ github.sha }}'
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_ec9c3614d2074861bb9e9e05c5e4943a }}/product-component:${{ github.sha }}'
   upload-to-sonarcloud:
     name: Upload to sonarcloud
     needs: build
