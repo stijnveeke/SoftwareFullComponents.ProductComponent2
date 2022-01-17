@@ -91,14 +91,14 @@ namespace SoftwareFullComponents.Product2Component.Controllers
             }
         }
         
-        [HttpGet("Product/{productSlug}")]
-        public async Task GetProduct(string productSlug)
+        [HttpGet("Product/{productId}")]
+        public async Task GetProduct(string productId)
         {
             if (HttpContext.WebSockets.IsWebSocketRequest)
             {
                 using (var ws = await HttpContext.WebSockets.AcceptWebSocketAsync())
                 {
-                    var product = await _productRepository.GetProductBySlug(productSlug);
+                    var product = await _productRepository.GetProductByGuid(new Guid(productId));
 
                     var msg = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(product));
                     await ws.SendAsync(new ArraySegment<byte>(msg, 0, msg.Length), WebSocketMessageType.Text, false, CancellationToken.None);

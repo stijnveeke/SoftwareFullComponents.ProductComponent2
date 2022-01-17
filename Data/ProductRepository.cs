@@ -17,7 +17,7 @@ namespace SoftwareFullComponents.Product2Component.Data
         
         public async Task<Product> CreateProduct(Product product)
         {
-            product.Guid = Guid.NewGuid().ToString();
+            product.Guid = Guid.NewGuid();
             _context.Product.Add(product);
             await _context.SaveChangesAsync();
 
@@ -72,6 +72,11 @@ namespace SoftwareFullComponents.Product2Component.Data
         public async Task<Product> GetProductBySlug(string productSlug)
         {
             return await _context.Product.FirstOrDefaultAsync(f => f.ProductSlug == productSlug);
+        }
+        
+        public async Task<Product> GetProductByGuid(Guid productId)
+        {
+            return await _context.Product.FirstOrDefaultAsync(f => f.Guid == productId);
         }
 
         public async Task<IEnumerable<Product>> GetProducts()

@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using SoftwareFullComponents.Product2Component.Models;
@@ -16,5 +17,7 @@ namespace SoftwareFullComponents.Product2Component.Data {
         public Task DeleteProduct(string productSlug);
         public bool ProductExists(int id);
         public bool ProductExists(string productSlug);
+
+        public Task<Product> GetProductByGuid(Guid productId);
     }
 }
