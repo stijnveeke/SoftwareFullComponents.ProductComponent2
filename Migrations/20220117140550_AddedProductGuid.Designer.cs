@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SoftwareFullComponents.Product2Component.Data;
 
 namespace SoftwareFullComponents.Product2Component.Migrations
 {
     [DbContext(typeof(ProductComponentContext))]
-    partial class ProductComponentContextModelSnapshot : ModelSnapshot
+    [Migration("20220117140550_AddedProductGuid")]
+    partial class AddedProductGuid
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

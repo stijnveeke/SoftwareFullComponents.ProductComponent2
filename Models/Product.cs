@@ -11,6 +11,7 @@ namespace SoftwareFullComponents.Product2Component.Models
     {
         [Key]
         public int Id { get; set; }
+        public string Guid { get; set; }
         [Column(TypeName = "varchar(100)")]
         public string ProductName { get; set; }
         [Column(TypeName = "varchar(100)")]

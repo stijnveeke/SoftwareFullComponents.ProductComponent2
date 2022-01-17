@@ -10,6 +10,7 @@ namespace SoftwareFullComponents.Product2Component.DTO
     public class ProductRead
     {
         public int Id { get; set; }
+        public Guid Guid { get; set; }
         public string ProductName { get; set; }
         public string ProductSlug { get; set; }
         public string Description { get; set; }

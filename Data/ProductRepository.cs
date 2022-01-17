@@ -17,6 +17,7 @@ namespace SoftwareFullComponents.Product2Component.Data
         
         public async Task<Product> CreateProduct(Product product)
         {
+            product.Guid = Guid.NewGuid().ToString();
             _context.Product.Add(product);
             await _context.SaveChangesAsync();
 
