@@ -56,8 +56,8 @@ namespace SoftwareFullComponents.Product2Component.Controllers
                             break;
                         }
                         
-                        var productSlug = responseMessage;
-                        var product = await _productRepository.GetProductBySlug(productSlug);
+                        var productId = responseMessage;
+                        var product = await _productRepository.GetProductByGuid(new Guid(productId));
                         var productbytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(product));
                         ArraySegment<byte> productToSendInBytes = new ArraySegment<byte>(productbytes);
                         await ws.SendAsync(productToSendInBytes, WebSocketMessageType.Text, false, cts.Token);
